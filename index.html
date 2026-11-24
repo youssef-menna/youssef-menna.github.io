@@ -70,7 +70,7 @@ body { background: #fbf4e8; }
 .wd-cdu { min-width: 64px; padding: 10px 6px; border-radius: 14px; background: #f7ecd7; text-align: center; }
 .wd-cdu strong { display: block; font-size: 24px; line-height: 30px; color: #602f0e; font-variant-numeric: tabular-nums; }
 .wd-cdu span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #8c602b; }
-.wd-pill { transition: transform .2s ease, box-shadow .2s ease; }
+.wd-pill { transition: transform .2s ease, box-shadow .2s ease; } .wd-psym{font-size:1.5em;line-height:0;margin-inline-end:8px;position:relative;top:-1px;}
 .wd-pill:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(96,47,14,.25); }
 .wd-photo { transition: transform .5s ease; } .wd-photo:hover { transform: scale(1.02); }
 @media (prefers-reduced-motion: reduce) { .wd-rv, .wd-a1, .wd-a2, .wd-a3, .wd-arch, .wd-leaf, .wd-photo, .wd-pill { animation: none !important; transition: none !important; } .wd-rv.is-hidden { opacity: 1; transform: none; } }
@@ -100,7 +100,7 @@ body { background: #fbf4e8; }
 <div class="wd-sub wd-a3">invite you to their katb ketab</div></div></section>
 <div class="wd-rv"><section class="wd-date"><div><span>THU</span></div><div class="wd-day">24</div><div><span>DEC 2026</span></div></section></div>
 <div class="wd-rv"><div class="wd-meta">6:30 PM <i>·</i> Marassi Al-Qanater Al-Khairia</div><div class="wd-cd" id="cd"></div></div>
-<div class="wd-rv"><div class="wd-music"><audio id="au" loop preload="auto"></audio><div class="wd-musicrow"><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span><button type="button" class="wd-pill" id="mb" disabled>Play our music</button><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span></div><span class="wd-err" id="me" hidden>Music is not available on this device</span></div></div>
+<div class="wd-rv"><div class="wd-music"><audio id="au" loop preload="auto"></audio><div class="wd-musicrow"><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span><button type="button" class="wd-pill" id="mb" aria-label="Play the music"><span class="wd-psym">&#9654;</span> Play</button><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span></div><span class="wd-err" id="me" hidden>The music could not play on this device</span></div></div>
 <div class="wd-rv"><section class="wd-photos" id="photos"></section></div>
 <div class="wd-rv"><section class="wd-note"><h2>Come as you are</h2><p>It is a small, warm evening in the middle of winter. Bring your good wishes and a coat, we will take care of the rest.</p></section></div>
 <div class="wd-rv"><section class="wd-venue"><div class="wd-k">Where</div><div class="wd-v">Marassi Al-Qanater Al-Khairia</div><div class="wd-k">When</div><div class="wd-v">Thursday, 24 December 2026, 6:30 PM</div><div id="extra"></div></section></div>
@@ -137,7 +137,15 @@ var rv=[].slice.call(document.querySelectorAll('.wd-rv'));
 if('IntersectionObserver' in window){rv.forEach(function(el){if(el.getBoundingClientRect().top>innerHeight)el.classList.add('is-hidden');});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('is-hidden');io.unobserve(e.target);}})},{threshold:.15});rv.forEach(function(el){io.observe(el)});}
 var au=document.getElementById('au'),mb=document.getElementById('mb'),me=document.getElementById('me');
-(function(){var files=['music-1.b64.txt','music-2.b64.txt','music-3.b64.txt','music-4.b64.txt','music-5.b64.txt','music-6.b64.txt','music-7.b64.txt'];var ps=files.map(function(f){return fetch(f).then(function(r){return r.text()})});Promise.all(ps).then(function(parts){var bin=atob(parts.join(''));var buf=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)buf[i]=bin.charCodeAt(i);au.src=URL.createObjectURL(new Blob([buf],{type:'audio/mpeg'}));mb.disabled=false;}).catch(function(){me.hidden=false;mb.disabled=false;});})();
-mb.onclick=function(){if(au.paused){au.volume=.6;au.play().then(function(){mb.textContent='Pause the music'}).catch(function(){me.hidden=false});}else{au.pause();mb.textContent='Play our music';}};
+au.src='music.mp3';
+var userPaused=false;
+function lblPlay(){mb.innerHTML='<span class="wd-psym">&#9654;</span> Play';mb.setAttribute('aria-label','Play the music');}
+function lblPause(){mb.innerHTML='<span class="wd-psym">&#10074;&#10074;</span> Pause';mb.setAttribute('aria-label','Pause the music');}
+function tryPlay(){au.volume=.6;return au.play().then(function(){lblPause();return true;}).catch(function(e){lblPlay();if(!e||e.name!=='NotAllowedError'){me.hidden=false;}return false;});}
+au.addEventListener('error',function(){me.hidden=false;});
+lblPlay();mb.disabled=false;
+tryPlay();
+document.addEventListener('pointerdown',function(){if(au.paused&&!userPaused){tryPlay();}},true);
+mb.onclick=function(){if(au.paused){userPaused=false;tryPlay();}else{userPaused=true;au.pause();lblPlay();}};
 })();
 </script></body></html>
