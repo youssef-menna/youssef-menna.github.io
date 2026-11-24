@@ -145,7 +145,7 @@ function tryPlay(){au.volume=.6;return au.play().then(function(){lblPause();retu
 au.addEventListener('error',function(){me.hidden=false;});
 lblPlay();mb.disabled=false;
 tryPlay();
-document.addEventListener('pointerdown',function(){if(au.paused&&!userPaused){tryPlay();}},true);
+document.addEventListener('pointerdown',function(e){if(e.target&&e.target.closest&&e.target.closest('#mb')){return;}if(au.paused&&!userPaused){tryPlay();}},true);
 mb.onclick=function(){if(au.paused){userPaused=false;tryPlay();}else{userPaused=true;au.pause();lblPlay();}};
 })();
 </script></body></html>
