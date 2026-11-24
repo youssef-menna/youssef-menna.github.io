@@ -100,7 +100,7 @@ body { background: #fbf4e8; }
 <div class="wd-sub wd-a3">invite you to their katb ketab</div></div></section>
 <div class="wd-rv"><section class="wd-date"><div><span>THU</span></div><div class="wd-day">24</div><div><span>DEC 2026</span></div></section></div>
 <div class="wd-rv"><div class="wd-meta">6:30 PM <i>·</i> Marassi Al-Qanater Al-Khairia</div><div class="wd-cd" id="cd"></div></div>
-<div class="wd-rv"><div class="wd-music"><audio id="au" loop preload="auto"></audio><div class="wd-musicrow"><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span><button type="button" class="wd-pill" id="mb" aria-label="Play the music"><span class="wd-psym">&#9654;</span> Our music</button><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span></div><span class="wd-err" id="me" hidden>The music could not play on this device</span></div></div>
+<div class="wd-rv"><div class="wd-music"><audio id="au" loop preload="auto"></audio><div class="wd-musicrow"><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span><button type="button" class="wd-pill" id="mb" aria-label="Play the music"><span class="wd-psym">&#9654;</span> Play our music</button><span class="wd-fl"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#a52a1a"><circle cx="12" cy="4.6" r="4"/><circle cx="19" cy="9.7" r="4"/><circle cx="16.3" cy="18" r="4"/><circle cx="7.7" cy="18" r="4"/><circle cx="5" cy="9.7" r="4"/></g><circle cx="12" cy="12" r="3.2" fill="#e8cf9a"/></svg></span></div><span class="wd-err" id="me" hidden>The music could not play on this device</span></div></div>
 <div class="wd-rv"><section class="wd-photos" id="photos"></section></div>
 <div class="wd-rv"><section class="wd-note"><h2>Come as you are</h2><p>It is a small, warm evening in the middle of winter. Bring your good wishes and a coat, we will take care of the rest.</p></section></div>
 <div class="wd-rv"><section class="wd-venue"><div class="wd-k">Where</div><div class="wd-v">Marassi Al-Qanater Al-Khairia</div><div class="wd-k">When</div><div class="wd-v">Thursday, 24 December 2026, 6:30 PM</div><div id="extra"></div></section></div>
@@ -139,8 +139,8 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 var au=document.getElementById('au'),mb=document.getElementById('mb'),me=document.getElementById('me');
 au.src='music.mp3';
 var userPaused=false;
-function lblPlay(){mb.innerHTML='<span class="wd-psym">&#9654;</span> Our music';mb.setAttribute('aria-label','Play the music');}
-function lblPause(){mb.innerHTML='<span class="wd-psym">&#10074;&#10074;</span> Our music';mb.setAttribute('aria-label','Pause the music');}
+function lblPlay(){mb.innerHTML='<span class="wd-psym">&#9654;</span> Play our music';mb.setAttribute('aria-label','Play the music');}
+function lblPause(){mb.innerHTML='<span class="wd-psym">&#10074;&#10074;</span> Pause the music';mb.setAttribute('aria-label','Pause the music');}
 function tryPlay(){au.volume=.6;return au.play().then(function(){lblPause();return true;}).catch(function(e){lblPlay();if(!e||e.name!=='NotAllowedError'){me.hidden=false;}return false;});}
 au.addEventListener('error',function(){me.hidden=false;});
 lblPlay();mb.disabled=false;
